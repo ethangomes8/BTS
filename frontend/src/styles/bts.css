@@ -1,0 +1,245 @@
+:root {
+  /* Thème global beige / marron clair (texte noir) */
+  --bts-page-bg: #f5efe6; /* beige */
+  --bts-surface: #e7d6c3; /* marron clair */
+  --bts-bg: #ffffff; /* blanc (contenus / inputs) */
+
+  --bts-border: #d7c3ad; /* marron clair (bordures) */
+  --bts-text: #000000; /* texte noir */
+  --bts-muted: #2b2b2b; /* texte secondaire noir/gris */
+
+  --bts-accent: #b08968; /* marron clair (actions) */
+  --bts-accent-soft: rgba(176, 137, 104, 0.14);
+  --bts-shadow: rgba(0, 0, 0, 0.08) 0 10px 24px;
+}
+
+body {
+  background: var(--bts-page-bg);
+}
+
+.bts-app {
+  padding: 24px 16px;
+  max-width: 1120px;
+  margin: 0 auto;
+  color: var(--bts-text);
+  background: transparent;
+}
+
+.bts-app h2 {
+  color: #000;
+}
+
+.bts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--bts-border);
+  border-radius: 12px;
+  background: var(--bts-surface);
+  box-shadow: var(--bts-shadow);
+}
+
+.bts-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bts-brand img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.bts-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.bts-nav a {
+  text-decoration: none;
+  color: var(--bts-text);
+  border: 1px solid var(--bts-border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 14px;
+  background: var(--bts-bg);
+}
+
+.bts-nav a:hover {
+  border-color: rgba(176, 137, 104, 0.55);
+  background: var(--bts-accent-soft);
+}
+
+.bts-btn {
+  cursor: pointer;
+  border: 1px solid var(--bts-border);
+  background: var(--bts-bg);
+  color: var(--bts-text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.bts-btn:hover {
+  border-color: rgba(176, 137, 104, 0.55);
+  background: var(--bts-accent-soft);
+}
+
+.bts-btn.primary {
+  background: var(--bts-accent);
+  border-color: var(--bts-accent);
+  color: #000;
+}
+
+.bts-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 920px) {
+  .bts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bts-card {
+  border: 1px solid var(--bts-border);
+  border-radius: 14px;
+  background: var(--bts-bg);
+  box-shadow: var(--bts-shadow);
+  padding: 16px;
+}
+
+.bts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.bts-table th,
+.bts-table td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--bts-border);
+}
+
+.bts-table th {
+  color: var(--bts-muted);
+  font-weight: 600;
+}
+
+.bts-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bts-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bts-field label {
+  font-size: 13px;
+  color: var(--bts-muted);
+}
+
+.bts-field input,
+.bts-field select,
+.bts-field textarea {
+  border: 1px solid var(--bts-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: var(--bts-bg);
+  color: var(--bts-text);
+}
+
+.bts-field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.bts-inline {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bts-error {
+  color: #b91c1c;
+  font-size: 14px;
+  background: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.25);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+.bts-thumb {
+  width: 58px;
+  height: 58px;
+  border-radius: 10px;
+  object-fit: contain;
+  border: 1px solid var(--bts-border);
+  background: #fafafa;
+}
+
+/* Modal de confirmation (style intégré, non "dev") */
+.bts-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 50;
+}
+
+.bts-modal {
+  width: min(560px, 100%);
+  background: var(--bts-bg);
+  border: 1px solid var(--bts-border);
+  border-radius: 16px;
+  box-shadow: var(--bts-shadow);
+  overflow: hidden;
+}
+
+.bts-modal-header {
+  padding: 14px 16px;
+  background: var(--bts-surface);
+  border-bottom: 1px solid var(--bts-border);
+}
+
+.bts-modal-title {
+  font-weight: 800;
+  color: var(--bts-text);
+}
+
+.bts-modal-body {
+  padding: 16px;
+  color: var(--bts-text);
+  line-height: 1.4;
+}
+
+.bts-modal-actions {
+  padding: 12px 16px 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.bts-btn.primary.danger {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #000;
+}
+
