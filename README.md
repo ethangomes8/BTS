@@ -11,7 +11,6 @@ Une application web complète pour la gestion d'une brasserie, incluant catalogu
 - [Configuration](#configuration)
 - [Utilisation](#utilisation)
 - [Galerie](#galerie)
-- [Contribution](#contribution)
 
 ## Aperçu
 
