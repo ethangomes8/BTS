@@ -1,8 +1,8 @@
-# 🍺 BTS - Brasserie Management System
+# BTS - Brasserie Management System
 
 Une application web complète pour la gestion d'une brasserie, incluant catalogue de produits et interface utilisateur interactive.
 
-## 📋 Table des matières
+## Table des matières
 
 - [Aperçu](#aperçu)
 - [Architecture](#architecture)
@@ -13,14 +13,14 @@ Une application web complète pour la gestion d'une brasserie, incluant catalogu
 - [Galerie](#galerie)
 - [Contribution](#contribution)
 
-## 📖 Aperçu
+## Aperçu
 
 BTS est une plateforme de gestion complète pour les brasseries, permettant de :
 - Visualiser le catalogue de produits
 - Gérer l'interface client
 - Intégrer avec un backend robuste
 
-## 🏗️ Architecture
+## Architecture
 
 Le projet suit une architecture **client-serveur** :
 
@@ -38,21 +38,21 @@ Le projet suit une architecture **client-serveur** :
 └─────────────────────────────────────────┘
 ```
 
-## 📁 Structure du Projet
+## Structure du Projet
 
 ```
 BTS/
-├── 📄 README.md                          # Documentation
-├── 🎨 brasserie_logo.png               # Logo du projet
-├── 📝 description_produit.txt           # Descriptions des produits
-├── 📁 frontend/                          # Application frontale
+├── README.md                          # Documentation
+├── brasserie_logo.png               # Logo du projet
+├── description_produit.txt           # Descriptions des produits
+├── frontend/                          # Application frontale
 │   └── [Fichiers React/Vue/etc.]
-├── 📁 backend/                           # API serveur
+├── backend/                           # API serveur
 │   └── [Fichiers Node.js/Python/etc.]
-└── 🖼️ produits-0[1-5].png              # Images des produits
+└── produits-0[1-5].png              # Images des produits
 ```
 
-## 🚀 Installation
+## Installation
 
 ### Prérequis
 
@@ -90,11 +90,11 @@ BTS/
    NODE_ENV=development
    ````
 
-## ⚙️ Configuration
+## Configuration
 
 [Ajouter les détails de configuration spécifiques à votre projet]
 
-## 💻 Utilisation
+## Utilisation
 
 ### Démarrer l'application
 
@@ -111,9 +111,9 @@ cd frontend
 npm start
 ```
 
-L'application sera accessible sur `http://localhost:3000`
+L'application sera accessible sur `http://localhost:5137`
 
-## 🖼️ Galerie
+## Galerie
 
 Voici un aperçu des interfaces de notre application :
 
@@ -125,23 +125,5 @@ Voici un aperçu des interfaces de notre application :
 |----------|----------|------|
 | ![Produits 4](produits-04.png) | ![Produits 5](produits-05.png) | ![Logo](brasserie_logo.png) |
 
-## 🤝 Contribution
-
-Les contributions sont bienvenues ! Pour contribuer :
-
-1. Créer une branche (`git checkout -b feature/AmazingFeature`)
-2. Commiter vos changements (`git commit -m 'Add some AmazingFeature'`)
-3. Pousser vers la branche (`git push origin feature/AmazingFeature`)
-4. Ouvrir une Pull Request
-
-## 📄 Licence
-
-[Préciser votre licence : MIT, Apache 2.0, etc.]
-
-## 📧 Contact
-
-Pour toute question ou suggestion, n'hésitez pas à nous contacter ou ouvrir une issue.
 
 ---
-
-**Créé avec ❤️ par Ethan Gomes**
