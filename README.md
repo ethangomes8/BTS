@@ -1,99 +1,25 @@
-# Projet E6 - Brasserie Terroir et Savoirs
+# Project Title
 
-Frontend React realise pour le contexte E6 (gestion des stocks), en s'appuyant sur le backend Dart deja fourni.
+## Architecture
 
-## Fonctionnalites realisees
+The architecture of the project consists of several components...
 
-- Interface web professionnelle en React + TypeScript.
-- Authentification admin cote frontend (session locale).
-- Tableau de bord avec indicateurs (stocks, types, formats).
-- Gestion des stocks de produits (creation + suppression).
-- CRUD des types de produits (creation, lecture, modification, suppression).
-- CRUD des formats de produits (creation, lecture, modification, suppression).
-- Integration des ressources visuelles et contenus de la brasserie (logo + photos produits + textes descriptifs issus des donnees backend).
+## Code Analysis
 
-## Arborescence utile
+The code analysis section provides insights on the implementation and structure of the code...
 
-- Backend API Dart : `dart_apirest`
-- Frontend React : `frontend`
-- Ressources images/textes : `Ressources Brasserie`
+## Setup Instructions
 
-## Prerequis
+To set up the project locally, follow these steps:
+1. Clone the repository
+2. Install dependencies
+3. Run the application
 
-- Node.js 18+ (recommande: 20+)
-- Dart SDK
+## Screenshots
 
-## Lancer le backend (API)
+Here are some screenshots of the application in action:
 
-Depuis `dart_apirest` :
+![Screenshot 1](URL_to_screenshot_1)
+![Screenshot 2](URL_to_screenshot_2)
 
-```bash
-dart pub get
-dart run bin/server.dart
-```
-
-API disponible sur `http://localhost:8080`.
-
-## Lancer le frontend React
-
-Depuis `frontend` :
-
-```bash
-npm install
-npm run dev
-```
-
-Frontend disponible sur `http://localhost:5173`.
-
-## Identifiants admin (frontend)
-
-- Login : `admin@brasserie.local`
-- Mot de passe : `Admin1234!`
-
-## Endpoints utilises par le frontend
-
-- `GET /beers`
-- `POST /beers`
-- `DELETE /beers/:id`
-- `GET /types`
-- `POST /types`
-- `PUT /types/:id`
-- `DELETE /types/:id`
-- `GET /formats`
-- `POST /formats`
-- `PUT /formats/:id`
-- `DELETE /formats/:id`
-
-## Ce qui a ete fait concretement
-
-- Creation d'un nouveau projet React `brasserie-frontend`.
-- Connexion du frontend aux routes REST du backend Dart.
-- Construction des ecrans:
-  - connexion admin,
-  - vue stocks,
-  - vue types,
-  - vue formats.
-- Ajout d'une UI responsive et coherente pour une presentation BTS SIO.
-- Copie des images fournies dans `brasserie-frontend/public/assets`.
-- Refactorisation du frontend en infrastructure propre (dossiers `api/`, `auth/`, `pages/`, `components/`, `domain/`) pour faciliter la comprehension.
-
-## Correctif applique (30/03/2026)
-
-- Ajout d'un middleware CORS dans `dart_apirest/bin/server.dart`.
-- Gestion des requetes `OPTIONS` pour le preflight navigateur.
-- Ajout automatique des en-tetes:
-  - `Access-Control-Allow-Origin: *`
-  - `Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS`
-  - `Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization`
-- Ajout d'une confirmation utilisateur avant suppression d'un produit dans le stock (frontend React).
-- Restauration automatique des types et formats par defaut au demarrage backend (inclut `BiÃ¨re Blonde`).
-
-## Depannage
-
-Si le frontend affiche `Failed to fetch` alors que le backend repond en console:
-
-1. Arreter le backend (`Ctrl + C`).
-2. Relancer `dart run bin/server.dart`.
-3. Recharger la page frontend (F5).
-
-Le probleme venait du CORS: le navigateur bloquait la lecture de la reponse API.
+Feel free to reach out for any queries or contributions!
