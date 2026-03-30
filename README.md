@@ -41,12 +41,12 @@ Le projet suit une architecture **client-serveur** :
 
 ```
 BTS/
-├── README.md                          # Documentation
+├── README.md                        # Documentation
 ├── brasserie_logo.png               # Logo du projet
-├── description_produit.txt           # Descriptions des produits
-├── frontend/                          # Application frontale
+├── description_produit.txt          # Descriptions des produits
+├── frontend/                        # Application frontale
 │   └── [Fichiers React/Vue/etc.]
-├── backend/                           # API serveur
+├── backend/                         # API serveur
 │   └── [Fichiers Node.js/Python/etc.]
 └── produits-0[1-5].png              # Images des produits
 ```
