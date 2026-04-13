@@ -61,6 +61,10 @@ class ApiRouter {
     );
   }
 
+  Response _error(String message, {int statusCode = 400}) {
+    return _json({'error': message}, statusCode: statusCode);
+  }
+
   Future<Map<String, dynamic>> _readJson(Request request) async {
     final body = await request.readAsString();
     if (body.trim().isEmpty) return const {};
@@ -75,12 +79,12 @@ class ApiRouter {
       final email = data['email'] as String?;
       final password = data['password'] as String?;
       if (email == null || password == null) {
-        return _json({'error': 'Missing email or password'}, statusCode: 400);
+        return _error('L\'email ou le mot de passe est manquant.', statusCode: 400);
       }
 
       final result = _authService.login(email: email, password: password);
       if (!result.ok) {
-        return _json({'error': result.error ?? 'Invalid credentials'}, statusCode: 401);
+        return _error(result.error ?? 'Identifiants invalides.', statusCode: 401);
       }
 
       return _json(
@@ -91,7 +95,7 @@ class ApiRouter {
         },
       );
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 500);
+      return _error('Erreur interne lors de la connexion.', statusCode: 500);
     }
   }
 
@@ -104,12 +108,12 @@ class ApiRouter {
     try {
       final data = await _readJson(request);
       final name = data['name'] as String?;
-      if (name == null) return _json({'error': 'Missing name'}, statusCode: 400);
+      if (name == null) return _error('Nom manquant.', statusCode: 400);
 
       final id = _typesService.create(name);
       return _json({'id': id, 'name': name.trim()}, statusCode: 201);
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de créer le type.', statusCode: 400);
     }
   }
 
@@ -117,11 +121,11 @@ class ApiRouter {
     try {
       final data = await _readJson(request);
       final name = data['name'] as String?;
-      if (name == null) return _json({'error': 'Missing name'}, statusCode: 400);
+      if (name == null) return _error('Nom manquant.', statusCode: 400);
       _typesService.update(id, name);
       return _json({'ok': true});
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de modifier le type.', statusCode: 400);
     }
   }
 
@@ -137,9 +141,9 @@ class ApiRouter {
           statusCode: 409,
         );
       }
-      return _json({'error': 'Database error: $e'}, statusCode: 500);
+      return _error('Erreur interne de la base de données.', statusCode: 500);
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de supprimer le type.', statusCode: 400);
     }
   }
 
@@ -164,12 +168,12 @@ class ApiRouter {
       final volumeMl = data['volumeMl'] as int?;
       final alcoholPercent = (data['alcoholPercent'] as num?)?.toDouble();
       if (label == null || volumeMl == null || alcoholPercent == null) {
-        return _json({'error': 'Missing label/volumeMl/alcoholPercent'}, statusCode: 400);
+        return _error('Le libellé, le volume ou le pourcentage est manquant.', statusCode: 400);
       }
       final id = _formatsService.create(label: label, volumeMl: volumeMl, alcoholPercent: alcoholPercent);
       return _json({ 'id': id }, statusCode: 201);
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de créer le format.', statusCode: 400);
     }
   }
 
@@ -180,12 +184,12 @@ class ApiRouter {
       final volumeMl = data['volumeMl'] as int?;
       final alcoholPercent = (data['alcoholPercent'] as num?)?.toDouble();
       if (label == null || volumeMl == null || alcoholPercent == null) {
-        return _json({'error': 'Missing label/volumeMl/alcoholPercent'}, statusCode: 400);
+        return _error('Le libellé, le volume ou le pourcentage est manquant.', statusCode: 400);
       }
       _formatsService.update(id: id, label: label, volumeMl: volumeMl, alcoholPercent: alcoholPercent);
       return _json({'ok': true});
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de modifier le format.', statusCode: 400);
     }
   }
 
@@ -200,9 +204,9 @@ class ApiRouter {
           statusCode: 409,
         );
       }
-      return _json({'error': 'Database error: $e'}, statusCode: 500);
+      return _error('Erreur interne de la base de données.', statusCode: 500);
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de supprimer le format.', statusCode: 400);
     }
   }
 
@@ -229,7 +233,7 @@ class ApiRouter {
       final quantity = data['quantity'] as int?;
       final imageKey = data['imageKey'] as String?;
       if (name == null || description == null || typeId == null || formatId == null || quantity == null || imageKey == null) {
-        return _json({'error': 'Missing required fields'}, statusCode: 400);
+        return _error('Champs requis manquants.', statusCode: 400);
       }
 
       final id = _productsService.create(
@@ -242,7 +246,7 @@ class ApiRouter {
       );
       return _json({'id': id}, statusCode: 201);
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de créer le produit.', statusCode: 400);
     }
   }
 
@@ -256,7 +260,7 @@ class ApiRouter {
       final quantity = data['quantity'] as int?;
       final imageKey = data['imageKey'] as String?;
       if (name == null || description == null || typeId == null || formatId == null || quantity == null || imageKey == null) {
-        return _json({'error': 'Missing required fields'}, statusCode: 400);
+        return _error('Champs requis manquants.', statusCode: 400);
       }
       _productsService.update(
         id: id,
@@ -269,7 +273,7 @@ class ApiRouter {
       );
       return _json({'ok': true});
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de modifier le produit.', statusCode: 400);
     }
   }
 
@@ -278,7 +282,7 @@ class ApiRouter {
       _productsService.delete(id);
       return _json({'ok': true});
     } catch (e) {
-      return _json({'error': '$e'}, statusCode: 400);
+      return _error('Impossible de supprimer le produit.', statusCode: 400);
     }
   }
 }

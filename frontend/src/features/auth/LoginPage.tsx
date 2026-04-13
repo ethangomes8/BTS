@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../auth/AuthContext'
+import StatusMessage from '../../components/StatusMessage'
+import { formatError } from '../../utils/errorUtils'
 
 export default function LoginPage() {
   const { login } = useAuth()
@@ -15,9 +17,6 @@ export default function LoginPage() {
     <div className="bts-app">
       <div className="bts-card" style={{ maxWidth: 520, margin: '0 auto' }}>
         <h2 style={{ marginTop: 0 }}>Connexion admin</h2>
-        <p style={{ marginTop: -6, color: '#6f6a7d' }}>
-          Authentification sécurisée (JWT).
-        </p>
 
         <form
           className="bts-form"
@@ -29,7 +28,7 @@ export default function LoginPage() {
               await login(email, password)
               navigate('/admin/produits')
             } catch (err) {
-              setError(err instanceof Error ? err.message : 'Login failed')
+              setError(formatError(err))
             } finally {
               setLoading(false)
             }
@@ -49,7 +48,7 @@ export default function LoginPage() {
             />
           </div>
 
-          {error ? <div className="bts-error">{error}</div> : null}
+          <StatusMessage message={error} type="error" onClose={() => setError(null)} />
 
           <button className="bts-btn primary" disabled={loading} type="submit">
             {loading ? 'Connexion...' : 'Se connecter'}

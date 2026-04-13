@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
 import { useAuth } from '../../auth/AuthContext'
+import StatusMessage from '../../components/StatusMessage'
+import { formatError } from '../../utils/errorUtils'
 import { createFormat, deleteFormat, getFormats, updateFormat } from '../../api/adminApi'
 import type { StockFormat } from '../../api/types'
 import { useConfirm } from '../../components/confirm/ConfirmContext'
@@ -29,7 +31,7 @@ export default function FormatsPage() {
       const data = await getFormats(token)
       setItems(data)
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Error')
+      setError(formatError(e))
     } finally {
       setLoading(false)
     }
@@ -45,7 +47,7 @@ export default function FormatsPage() {
       <section className="bts-card">
         <h2 style={{ marginTop: 0 }}>Formats de produits</h2>
         {loading ? <div>Chargement...</div> : null}
-        {error ? <div className="bts-error">{error}</div> : null}
+        <StatusMessage message={error} type="error" onClose={() => setError(null)} />
 
         <table className="bts-table" aria-label="Liste formats">
           <thead>
@@ -91,7 +93,7 @@ export default function FormatsPage() {
                           setEditId((cur) => (cur === f.id ? null : cur))
                           await refresh()
                         } catch (e) {
-                          setError(e instanceof Error ? e.message : 'Error')
+                          setError(formatError(e))
                         }
                       }}
                     >
@@ -182,7 +184,7 @@ export default function FormatsPage() {
                   }
                   await refresh()
                 } catch (e) {
-                  setError(e instanceof Error ? e.message : 'Error')
+                  setError(formatError(e))
                 }
               }}
             >

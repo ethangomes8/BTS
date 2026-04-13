@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import { useAuth } from '../../auth/AuthContext'
+import StatusMessage from '../../components/StatusMessage'
+import { formatError } from '../../utils/errorUtils'
 import {
   createProduct,
   deleteProduct,
@@ -56,7 +58,7 @@ export default function ProductsPage() {
         setFormatId(f[0]?.id ?? '')
       }
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Error')
+      setError(formatError(e))
     } finally {
       setLoading(false)
     }
@@ -72,7 +74,7 @@ export default function ProductsPage() {
       <section className="bts-card">
         <h2 style={{ marginTop: 0 }}>Stocks de produits</h2>
         {loading ? <div>Chargement...</div> : null}
-        {error ? <div className="bts-error">{error}</div> : null}
+        <StatusMessage message={error} type="error" onClose={() => setError(null)} />
 
         <table className="bts-table" aria-label="Liste produits">
           <thead>
@@ -137,7 +139,7 @@ export default function ProductsPage() {
                           }
                           await loadAll()
                         } catch (e) {
-                          setError(e instanceof Error ? e.message : 'Error')
+                          setError(formatError(e))
                         }
                       }}
                     >
@@ -262,7 +264,7 @@ export default function ProductsPage() {
                   setDescription('')
                   await loadAll()
                 } catch (e) {
-                  setError(e instanceof Error ? e.message : 'Error')
+                  setError(formatError(e))
                 }
               }}
             >
